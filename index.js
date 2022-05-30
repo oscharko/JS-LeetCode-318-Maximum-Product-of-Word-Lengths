@@ -1,4 +1,15 @@
-let words = ["eae","ea","aaf","bda","fcf","dc","ac","ce","cefde","dabae"];
+let words = [
+  "eae",
+  "ea",
+  "aaf",
+  "bda",
+  "fcf",
+  "dc",
+  "ac",
+  "ce",
+  "cefde",
+  "dabae",
+];
 
 const maxProduct = function (words) {
   let left = 0,
@@ -17,10 +28,13 @@ const maxProduct = function (words) {
           }
         }
       }
-      if (temp === words[left].split("").length * words[right].split("").length) {
+      if (
+        temp ===
+        words[left].split("").length * words[right].split("").length
+      ) {
         tempArray.push(temp);
       }
-      right--
+      right--;
       temp = 0;
     }
     left++;

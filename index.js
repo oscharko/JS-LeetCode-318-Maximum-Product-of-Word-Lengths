@@ -1,33 +1,36 @@
-let words = ["abcw", "baz", "foo", "bar", "xtfn", "abcdef"]
+let words = ["eae","ea","aaf","bda","fcf","dc","ac","ce","cefde","dabae"];
 
-const maxProduct = function(words) {
-  let left = 0, right = words.length - 1, tempLeft = 0, tempRight = 0, i = 0, j = 0, temp = 0
+const maxProduct = function (words) {
+  let left = 0,
+    right = words.length - 1,
+    temp = 0,
+    tempArray = [];
   while (left < right) {
-    tempLeft = words[left].split("")
-    tempRight = words[right].split("")
-    while (i < tempLeft.length) {
-      while (j < tempRight.length) {
-        if (tempLeft[i] === tempRight[j]) {
-          j = tempRight.length
-          i = tempLeft.length
-        } else {
-          j++
-          temp++
+    while (left < right) {
+      for (let i = 0; i < words[left].split("").length; i++) {
+        for (let j = 0; j < words[right].split("").length; j++) {
+          if (words[left].split("")[i] === words[right].split("")[j]) {
+            i = words[left].split("").length;
+            j = words[right].split("").length;
+          } else {
+            temp++;
+          }
         }
       }
-      j = 0
-      i++
-    }
-    if (temp !== (tempLeft.length * tempRight.length)) {
-      i = 0
+      if (temp === words[left].split("").length * words[right].split("").length) {
+        tempArray.push(temp);
+      }
       right--
-    } else {
-      right = 0
+      temp = 0;
     }
+    left++;
+    temp = 0;
+    right = words.length - 1;
   }
-  return temp
-}
+  const max = tempArray.reduce(function (a, b) {
+    return Math.max(a, b);
+  }, 0);
+  return max;
+};
 
-
-
-console.log(maxProduct(words))
+console.log(maxProduct(words));
